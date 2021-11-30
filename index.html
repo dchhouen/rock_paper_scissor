@@ -53,9 +53,13 @@ function randomPick(){
 }
 
 function validateInput(input){
+    if (input === null) {
+        return false;
+    }
     const santizedInput = input.toLowerCase();
     return (santizedInput == 'scissor' || santizedInput == 'rock' || santizedInput == 'paper')
 }
+
 
 function game(n){
     for (let i = 1; i <= n; i++){
@@ -74,8 +78,8 @@ function game(n){
     }
 }
 
-game(5);
-
+const gameCount = Number(window.prompt('How many games do you want to play', '5'));
+    game(gameCount);
     </script>
 </body>
 </html>
