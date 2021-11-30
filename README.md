@@ -1,0 +1,1 @@
+Initial website for rock paper scissor inspired by https://www.theodinproject.com/
