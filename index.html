@@ -5,81 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock paper scissor Game</title>
+    <script src="file.js" defer></script>
 </head>
 <body>
-    <script>
-
-
-function getRandomElementRPS(){
-    const possibleReturnResults = ['rock','paper','scissor'];
-    return possibleReturnResults[Math.floor(Math.random() * possibleReturnResults.length)];
-}
-
-function playRound(playerSelection,computerSelection){ 
-    const possibleItems = ['rock','paper','scissor'];
-    let santiziedPlayerSelectionInput = playerSelection.toLowerCase();
-
-    //tie situation
-    if (santiziedPlayerSelectionInput === computerSelection){ 
-        return "Wow, it's a tie";
-    }
-    // if player plays rock, two possible outcome computer select paper or scissor
-    if (santiziedPlayerSelectionInput === 'rock' && computerSelection === 'scissor'){
-        return "Player won!, Rock beats Scissor";
-    }
-    else if (santiziedPlayerSelectionInput === 'rock' && computerSelection === 'paper') {
-        return "Computer won! Paper beats Rock";
-    }
+     <!-- const gameCount = Number(window.prompt('How many games do you want to play', '5'));
+    game(gameCount); -->
+    <h4>Hi  click below to play a game</h4>
+    <input type = "button" id="buttonstart" onclick = "game()" value = "Click Me">
+    <input type = "button" id="buttonrock" onclick = "alert('this is a rock')" value = "Rock">
+    <input type = "button" id="buttonpaper" onclick = "alert('this is a paper')" value = "Paper">
+    <input type = "button" id="buttonscissor"  onclick = "alert('this is a scissor')" value = "Scissor">
     
-    // if player plays paper, two possible outcome computer select rock or scissor
-    if (santiziedPlayerSelectionInput === 'paper' && computerSelection === 'rock'){
-        return "Player won! Paper beats Rock";
-    }
-    else if (santiziedPlayerSelectionInput === 'paper' && computerSelection === 'scissor') {
-        return "Computer won! Scissor beats Paper";
-    }
-    // if player plays scissor, two possible outcome computer select rock or paper
-    if (santiziedPlayerSelectionInput === 'scissor' && computerSelection === 'rock'){
-        return "Computer won! Rock beats Scissor";
-    }
-    else if (santiziedPlayerSelectionInput === 'scissor' && computerSelection === 'paper') {
-        return "Player won! Scissor beats Paper";
-    }
-    return "I'm not sure who won!"
-}
 
-function randomPick(){
-    return getRandomElementRPS()
-}
-
-function validateInput(input){
-    if (input === null) {
-        return false;
-    }
-    const santizedInput = input.toLowerCase();
-    return (santizedInput == 'scissor' || santizedInput == 'rock' || santizedInput == 'paper')
-}
-
-
-function game(n){
-    for (let i = 1; i <= n; i++){
-        let flag = false;
-        while (!flag) {
-            const playerSelection = window.prompt('Rock, Paper or Scissor?', 'rock');
-            let computerSelection = randomPick();
-            if (validateInput(playerSelection)) {
-                console.log('game #' +i+ ' ' + playRound(playerSelection, computerSelection));
-                flag = true;
-            }
-            else {
-                alert('Invalid input, please try again');
-            }
-         }
-    }
-}
-
-const gameCount = Number(window.prompt('How many games do you want to play', '5'));
-    game(gameCount);
-    </script>
 </body>
 </html>
