@@ -6,18 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock paper scissor Game</title>
     <script src="file.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <p id ='title'> Rock Paper Scissor game</p>
-    <div id="currentScore">Current score:
-    <p>Player: <div id='playerscore'> </div></p>
-    <p>Computer: </p><div id='computerscore'> </div></p>
-    </div>
-    <p>Select Rock, Paper or Scissor</p>
+    <div id="currentScore">Current score</div> 
+    <div>Player:<p id='playerscore'></p></div>
+    <div>Computer: <p id='computerscore'></p></div>
+    <p>Choose Rock, Paper or Scissor</p>
     <input type = "button" id="buttonrock" onclick = "playRound('rock',randomPick())" value = "Rock">
     <input type = "button" id="buttonpaper" onclick = "playRound('paper',randomPick())" value = "Paper">
     <input type = "button" id="buttonscissor"  onclick = "playRound('scissor',randomPick())" value = "Scissor">
-    <input type = "button" id="buttonrandomrounds" onclick="for(let i=1; i< Math.floor(Math.random() *20)+10 ; i++) { playRound(randomPick(),randomPick()); }" value = "Random games">
+    <!-- <input type = "button" id="buttonrandomrounds" onclick="for(let i=1; i< Math.floor(Math.random() *20)+10 ; i++) { playRound(randomPick(),randomPick()); }" value = "Random games"> -->
     <div id="container"></div>
 </body>
 </html>

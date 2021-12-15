@@ -1,7 +1,9 @@
-//global variable
-var roundCounter = 0;
-var playerScore = 0;
-var computerScore = 0;
+let roundCounter =0;
+let playerScore = 0;
+let computerScore = 0;
+
+const buttons = document.querySelectorAll('input')
+
 function getRandomElementRPS(){
     const possibleReturnResults = ['rock','paper','scissor'];
     return possibleReturnResults[Math.floor(Math.random() * possibleReturnResults.length)];
@@ -16,9 +18,11 @@ function insertIntoDiv(textContent){
 
 }
 
-function resetScoreboard(){
-    document.getElementById('playerscore').textContent = `${playerScore}`;
-    document.getElementById('computerscore').textContent = `${playerScore}`;
+
+function disableGamePlay(){
+    buttons.forEach(elem => {
+        elem.disabled = true
+    })
 }
 
 function updatePlayerScore(){
@@ -26,12 +30,12 @@ function updatePlayerScore(){
     playerScore++;
     text.textContent = `${playerScore}`;
 
-    if (playerScore >=5){
-        alert('Player won! Congrats, resetting game');
-        playerScore = 0;
-        computerScore =0;
-        resetScoreboard();
-    }
+    // if (playerScore == 5){
+    //     alert('Player won! Congrats, resetting game');
+    //     playerScore = 0;
+    //     computerScore =0;
+    //     resetScoreboard();
+    // }
 
 }
 function updateComputerScore(){
@@ -39,12 +43,12 @@ function updateComputerScore(){
     computerScore++;
     text.textContent = `${computerScore}`;
     
-    if (computerScore >=5){
-        alert('Computer won! Better luck next time, resetting game');
-        playerScore = 0;
-        computerScore =0;
-        resetScoreboard();
-    }
+    // if (computerScore == 5){
+    //     alert('Computer won! Better luck next time, resetting game');
+    //     playerScore = 0;
+    //     computerScore =0;
+    //     resetScoreboard();
+    // }
 }
 
 function playRound(playerSelection,computerSelection){
@@ -52,48 +56,36 @@ function playRound(playerSelection,computerSelection){
     const possibleItems = ['rock','paper','scissor'];
     let santiziedPlayerSelectionInput = playerSelection.toLowerCase();
 
-    //tie situation
-    if (santiziedPlayerSelectionInput === computerSelection){ 
+    // if player wins
+    if ((santiziedPlayerSelectionInput === 'rock' && computerSelection === 'scissor') ||
+    (santiziedPlayerSelectionInput === 'paper' && computerSelection === 'rock') ||
+    (santiziedPlayerSelectionInput === 'scissor' && computerSelection === 'paper') ){
+        //return "You won!, R
+        insertIntoDiv(`Round ${roundCounter}: You won! ${santiziedPlayerSelectionInput} beats ${computerSelection} `);
+        updatePlayerScore();
+        if (playerScore >= 5){
+            insertIntoDiv(`You has won this game!`);
+            disableGamePlay();
+            return;
+        }
+        return;
+    } //tie
+    else if (santiziedPlayerSelectionInput === computerSelection) {
         //return "Wow, it's a tie";
         insertIntoDiv(`Round:${roundCounter}: Wow, it's a tie`);
         return;
-    }
-    // if player plays rock, two possible outcome computer select paper or scissor
-    if (santiziedPlayerSelectionInput === 'rock' && computerSelection === 'scissor'){
-        //return "You won!, Rock beats Scissor";
-        insertIntoDiv(`Round ${roundCounter}: You won!, Rock beats Scissor`);
-        updatePlayerScore();
-        return;
-    }
-    else if (santiziedPlayerSelectionInput === 'rock' && computerSelection === 'paper') {
-        insertIntoDiv(`Round ${roundCounter}: You lost! Paper beats Rock`);
+    } //computer has won
+    else {
+        insertIntoDiv(`Round ${roundCounter}: You lost! ${computerSelection} beats ${santiziedPlayerSelectionInput} `);
         updateComputerScore();
-        return;
+        if (computerScore >=5) {
+            insertIntoDiv(`Better luck next time!`);
+            disableGamePlay();
+            return;
+        }
     }
-    
-    // if player plays paper, two possible outcome computer select rock or scissor
-    if (santiziedPlayerSelectionInput === 'paper' && computerSelection === 'rock'){
-        insertIntoDiv(`Round ${roundCounter}: You won! Paper beats Rock`);
-        updatePlayerScore();
-        return;
-    }
-    else if (santiziedPlayerSelectionInput === 'paper' && computerSelection === 'scissor') {
-        insertIntoDiv(`Round ${roundCounter}: You lost! Scissor beats Paper`);
-        updateComputerScore();
-        return;
-    }
-    // if player plays scissor, two possible outcome computer select rock or paper
-    if (santiziedPlayerSelectionInput === 'scissor' && computerSelection === 'rock'){
-        insertIntoDiv(`Round ${roundCounter}: You lost! Rock beats Scissor`);
-        updateComputerScore();
-        return;
-    }
-    else if (santiziedPlayerSelectionInput === 'scissor' && computerSelection === 'paper') {
-        insertIntoDiv(`Round ${roundCounter}: You won! Scissor beats Paper`);
-        updatePlayerScore();
-        return;
-    }
-    insertIntoDiv("I'm not sure who won!");
+    return;
+
 }
 
 function randomPick(){
