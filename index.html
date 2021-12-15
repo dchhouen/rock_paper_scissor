@@ -8,7 +8,12 @@
     <script src="file.js" defer></script>
 </head>
 <body>
-    <h4>Hi  click below to play a game</h4>
+    <p id ='title'> Rock Paper Scissor game</p>
+    <div id="currentScore">Current score:
+    <p>Player: <div id='playerscore'> </div></p>
+    <p>Computer: </p><div id='computerscore'> </div></p>
+    </div>
+    <p>Select Rock, Paper or Scissor</p>
     <input type = "button" id="buttonrock" onclick = "playRound('rock',randomPick())" value = "Rock">
     <input type = "button" id="buttonpaper" onclick = "playRound('paper',randomPick())" value = "Paper">
     <input type = "button" id="buttonscissor"  onclick = "playRound('scissor',randomPick())" value = "Scissor">
