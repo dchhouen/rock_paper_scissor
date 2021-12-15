@@ -1,1 +1,1 @@
-Initial website for rock paper scissor inspired by https://www.theodinproject.com/
+A simple rock paper scissor game using js viewable here on github pages https://dchhouen.github.io/rock_paper_scissor/
