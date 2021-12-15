@@ -8,14 +8,11 @@
     <script src="file.js" defer></script>
 </head>
 <body>
-     <!-- const gameCount = Number(window.prompt('How many games do you want to play', '5'));
-    game(gameCount); -->
     <h4>Hi  click below to play a game</h4>
-    <input type = "button" id="buttonstart" onclick = "game()" value = "Click Me">
-    <input type = "button" id="buttonrock" onclick = "alert('this is a rock')" value = "Rock">
-    <input type = "button" id="buttonpaper" onclick = "alert('this is a paper')" value = "Paper">
-    <input type = "button" id="buttonscissor"  onclick = "alert('this is a scissor')" value = "Scissor">
-    
-
+    <input type = "button" id="buttonrock" onclick = "playRound('rock',randomPick())" value = "Rock">
+    <input type = "button" id="buttonpaper" onclick = "playRound('paper',randomPick())" value = "Paper">
+    <input type = "button" id="buttonscissor"  onclick = "playRound('scissor',randomPick())" value = "Scissor">
+    <input type = "button" id="buttonrandomrounds" onclick="for(let i=1; i< Math.floor(Math.random() *20)+10 ; i++) { playRound(randomPick(),randomPick()); }" value = "Random games">
+    <div id="container"></div>
 </body>
 </html>
